@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Start your project here-->
+
+
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+            <!-- older Version -->
+            <div id="older" class="card card-body">
+                <div class="card-header deep-orange lighten-1 white-text">Crypto | Old Version</div>
+                <div class="card-body">
+                    <!-- Medium input -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="md-form">
+                                <input type="text" id="inputMDExKey" class="form-control">
+                                <label for="inputMDEx">Key</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-info waves-effect" onclick="PG.setinputMDEx('older')">Generate</button>
+                        </div>
+                    </div>
+                    <!-- Medium input -->
+                    <div class="md-form">
+                        <input type="text" id="inputMDExValue" class="form-control" onkeyup="PG.updateValue('older')">
+                        <label for="inputMDEx">Value</label>
+                    </div>
+
+                    <button type="button" class="btn btn-deep-orange waves-effect waves-light"  onclick="PG.checkBefore('older')">Submit&nbsp;<span id="figg"></span></button>
+                    <button type="button" class="btn btn-deep-orange waves-effect waves-light"  id="cipher" onclick="PG.checkBefore('older'); PG.doDechipher()">Chipher</button>
+                </div>
+
+            </div>
+
+            <!-- cypher IV -->
+            <div id="latest" class="card card-body">
+                <div class="card-header deep-orange lighten-1 white-text">Crypto | Cipher IV</div>
+                <div class="card-body">
+                    <!-- Medium input -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="md-form">
+                                <input type="text" id="inputMDExKey" class="form-control">
+                                <label for="inputMDEx">Key</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-info waves-effect" onclick="PG.setinputMDEx('latest')">Generate</button>
+                        </div>
+                    </div>
+                    <!-- Medium input -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="md-form">
+                                <input type="text" id="inputMDExIv" class="form-control">
+                                <label for="inputMDEx">IV</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-info waves-effect" onclick="PG.setinputMDExIv('latest')">Generate</button>
+                        </div>
+                    </div>
+                    <!-- Medium input -->
+                    <div class="md-form">
+                        <input type="text" id="inputMDExValue" class="form-control" onkeyup="PG.updateValue('latest')">
+                        <label for="inputMDEx">Value</label>
+                    </div>
+
+                    <button type="button" class="btn btn-deep-orange waves-effect waves-light" onclick="PG.checkBefore('latest')">Submit&nbsp;<span id="figg"></span></button>
+                    <button type="button" class="btn btn-deep-orange waves-effect waves-light"  id="cipher" onclick="PG.checkBefore('latest'); PG.doDechipher()">Chipher</button>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col">
+            <!--Panel-->
+            <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Options</div>
+                <div class="card-body text-secondary">
+                    <select class="mdb-select">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="aes-256-ctr">aes-256-ctr</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                    <label>Algorithm</label>
+                </div>
+            </div>
+            <!--/.Panel-->
+        </div>
+    </div>
+
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+    <!-- Central Modal Medium Success -->
+    <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <p class="heading lead">Modal Success</p>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <p id="chiphered">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis
+                            ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim,
+                            ab officiis totam.</p>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a type="button" id="decipher" class="btn btn-primary">Decipher
+                        <i class="fa fa-diamond ml-1"></i>
+                    </a>
+                    <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No, thanks</a>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- Central Modal Medium Success-->
+
+
+
+
+    <!-- /Start your project here-->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="bundle.js"></script>
+</body>
+
+</html>
